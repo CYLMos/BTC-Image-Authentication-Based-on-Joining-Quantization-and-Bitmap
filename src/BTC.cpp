@@ -11,23 +11,23 @@ BTC::BTC(){  //initial
     this->block = new Block*[(H/b_h)];
     for(int i=0;i<(H/b_h);i++)this->block[i] = new Block[(W/b_w)];
 
-    this->attack_Image = new unsigned char[H*W];
-    this->attack_block = new Block*[(H/b_h)];
-    for(int i=0;i<(H/b_h);i++)this->attack_block[i] = new Block[(W/b_w)];
+    //this->attack_Image = new unsigned char[H*W];
+    //this->attack_block = new Block*[(H/b_h)];
+    //for(int i=0;i<(H/b_h);i++)this->attack_block[i] = new Block[(W/b_w)];
 
-    this->detected_Image = new unsigned char[H*W];
-    for(int i=0;i<H*W;i++)this->detected_Image[i] = 255;
+    //this->detected_Image = new unsigned char[H*W];
+    //for(int i=0;i<H*W;i++)this->detected_Image[i] = 255;
 
-    this->detected_count = 0;
+    //this->detected_count = 0;
 }
 
 BTC::~BTC(){  //dispose
     delete [] this->orgin_Image;
     delete [] this->change_Image;
     delete [] this->block;
-    delete [] this->attack_block;
-    delete [] this->attack_Image;
-    delete [] this->detected_Image;
+    //delete [] this->attack_block;
+    //delete [] this->attack_Image;
+    //delete [] this->detected_Image;
 }
 
 void BTC::Input(char* file){
@@ -112,6 +112,12 @@ void BTC::Decompress(){    //the method is similar as Divide.
     }
 }
 
+void BTC::BTC_Compress(char *file){
+    this->Input(file);
+    this->Divide();
+    this->Compress();
+}
+
 void BTC::Show_block(int h,int w){    //show a content of a block.
     std::cout << "block:" << std::endl;
     if((h>=(H/b_h) || w>=(W/b_w)) || (h<0 || w<0)){
@@ -150,4 +156,16 @@ double BTC::PSNR(){
     MSE = (1.0/m_2)*MSE;
     PSNR = 10*(log10(pow(255.0,2)/MSE));
     return PSNR;
+}
+
+Block** BTC::GetBlockData(){
+    return this->block;
+}
+
+unsigned char* BTC::GetOriginalImage(){
+    return this->orgin_Image;
+}
+
+unsigned char* BTC::GetChangeImage(){
+    return this->change_Image;
 }

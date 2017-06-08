@@ -16,3 +16,7 @@ Block::~Block(){
     delete this->bitmap;
     delete [] this->pixel_in_block;
 }
+
+Bitmap* Block::GetBitmapData(){
+    return this->bitmap;
+}

@@ -15,7 +15,7 @@ Bitmap::~Bitmap(){
     //delete this->parity_value;
 }
 
-void Bitmap::ac_generation(int len){
+/*void Bitmap::ac_generation(int len){
     this->auth_bm = new bool[len];
 
     int ac_decimal = this->random_num%(int)pow(2,len);
@@ -156,4 +156,4 @@ bool Bitmap::bm_detected_improve(int len,int random_classfication[]){
 
 int Bitmap::getChangeCount(){
     return this->change_count;
-}
+}*/
